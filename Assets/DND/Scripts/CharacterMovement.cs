@@ -3,7 +3,10 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
   [SerializeField]
-  float jumpForce = 400f;
+  float jumpForce = 150f;
+
+  [SerializeField]
+  float jumpTimeLimit;
 
   [Range(0, 0.3f)]
   [SerializeField]
@@ -24,6 +27,9 @@ public class CharacterMovement : MonoBehaviour
   Rigidbody2D rb;
   bool facingRight = true;
   Vector3 velocity = Vector3.zero;
+  float jumpTimeCounter;
+  bool lastWantsJump = true;
+  bool jumpExhausted = true;
 
   void Awake()
   {
@@ -44,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
     }
   }
 
-  public void Move(float move, bool jump)
+  public void Move(float move, bool wantsJump)
   {
     move *= moveSpeed;
 
@@ -60,11 +66,33 @@ public class CharacterMovement : MonoBehaviour
       Flip();
     }
 
-    if (isGrounded && jump)
+    if (wantsJump)
     {
-      isGrounded = false;
-      rb.AddForce(new Vector2(0, jumpForce));
+      Vector3 newVelocity = rb.velocity;
+      if (isGrounded && !lastWantsJump)
+      {
+        jumpExhausted = false;
+        isGrounded = false;
+        jumpTimeCounter = jumpTimeLimit;
+        newVelocity.y = jumpForce * Time.deltaTime;
+      }
+      else if (!isGrounded)
+      {
+        if (jumpTimeCounter > 0 && !jumpExhausted)
+        {
+          newVelocity.y = jumpForce * Time.deltaTime;
+          jumpTimeCounter -= Time.deltaTime;
+        }
+        else
+        {
+          jumpExhausted = true;
+        }
+      }
+
+      rb.velocity = newVelocity;
     }
+
+    lastWantsJump = wantsJump;
   }
 
   void Flip()
