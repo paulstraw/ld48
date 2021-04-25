@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
@@ -321,7 +321,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -392,8 +392,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.8941177
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 285941140854668396, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: prefab
+      value:
+      objectReference: {fileID: 434075447456254622, guid: 24284d12e2da04320b777b814fc1dd77, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
 --- !u!4 &434075447456254618 stripped
 Transform:

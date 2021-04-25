@@ -57,11 +57,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 targetVelocity = new Vector2(move, rb.velocity.y);
     rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmoothing);
 
-    if (move > 0 && !facingRight)
-    {
-      Flip();
-    }
-    else if (move < 0 && facingRight)
+    if (move > 0 && !facingRight || move < 0 && facingRight)
     {
       Flip();
     }

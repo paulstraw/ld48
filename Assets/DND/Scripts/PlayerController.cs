@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
   {
     controls = new GameplayControls();
 
-    controls.Digger.Enable();
-    controls.Fighter.Enable();
+    EnableDigControls();
+    EnableDuelControls();
 
     controls.Digger.Move.started += OnDiggerMoveStart;
     controls.Digger.Move.canceled += OnDiggerMoveCancel;
@@ -33,11 +33,40 @@ public class PlayerController : MonoBehaviour
     controls.Fighter.Move.canceled += OnFighterMoveCancel;
     controls.Fighter.Jump.started += OnFighterJumpStart;
     controls.Fighter.Jump.canceled += OnFighterJumpCancel;
+
+    CharacterLifecycle.OnCharacterSpawned += OnCharacterSpawned;
+    CharacterLifecycle.OnCharacterKilled += OnCharacterKilled;
   }
 
   void Update()
   {
 
+  }
+
+  void OnDestroy()
+  {
+    CharacterLifecycle.OnCharacterSpawned -= OnCharacterSpawned;
+    CharacterLifecycle.OnCharacterKilled -= OnCharacterKilled;
+  }
+
+  void EnableDigControls()
+  {
+    controls.Digger.Enable();
+  }
+
+  void EnableDuelControls()
+  {
+    controls.Fighter.Enable();
+  }
+
+  void DisableDigControls()
+  {
+    controls.Digger.Disable();
+  }
+
+  void DisableDuelControls()
+  {
+    controls.Fighter.Disable();
   }
 
   void OnDiggerMoveStart(InputAction.CallbackContext ctx)
@@ -80,9 +109,42 @@ public class PlayerController : MonoBehaviour
     fighterJump = false;
   }
 
+  void OnCharacterSpawned(CharacterLifecycle characterLifecycle)
+  {
+    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    {
+      EnableDigControls();
+      diggerMovement = characterLifecycle.GetComponent<CharacterMovement>();
+    }
+    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    {
+      EnableDuelControls();
+      fighterMovement = characterLifecycle.GetComponent<CharacterMovement>();
+    }
+  }
+
+  void OnCharacterKilled(CharacterLifecycle characterLifecycle)
+  {
+    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    {
+      DisableDigControls();
+    }
+    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    {
+      DisableDuelControls();
+    }
+  }
+
   void FixedUpdate()
   {
-    diggerMovement.Move(diggerMove * Time.fixedDeltaTime, diggerJump);
-    fighterMovement.Move(fighterMove * Time.fixedDeltaTime, fighterJump);
+    if (controls.Digger.enabled)
+    {
+      diggerMovement.Move(diggerMove * Time.fixedDeltaTime, diggerJump);
+    }
+
+    if (controls.Fighter.enabled)
+    {
+      fighterMovement.Move(fighterMove * Time.fixedDeltaTime, fighterJump);
+    }
   }
 }
