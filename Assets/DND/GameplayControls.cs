@@ -33,6 +33,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DigAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a81f391-7c57-4088-964b-35214bceb939"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -104,6 +112,28 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""31262666-5473-4f60-9cd1-cdf190fda37d"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4010fc09-8210-476b-801f-5756bd29e071"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/hat"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d4e174b3-2f79-48a3-b26d-366533dbb523"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -116,7 +146,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""317a76e1-02ea-4db4-a1e1-c4b3cfa4bc6d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -127,11 +157,44 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58b22b62-3df0-4d8d-ab45-ab460982a088"",
-                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button5"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cc8c442-7fa1-4232-ba98-89c5334324bd"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb03f7b3-19a3-4799-b712-a7c21c5d8723"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5949c68f-1fb6-46d6-b296-83fb45ee99e8"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -248,6 +311,116 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""GamepadButtons"",
+                    ""id"": ""87ab3ad2-f65d-4a2e-bb20-8fe96205e7ae"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cef90773-a8c8-4e84-94cf-dcda5a75f8ef"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c069233a-0a27-478d-a114-4961503f4cfb"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4fe1a7b4-9b22-47a4-baa4-72d2e116855d"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ea6528cc-8efc-464f-b382-8430aa6cd2d6"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""PS4Buttons"",
+                    ""id"": ""8a946aeb-7e5f-482c-a8c1-9e4844f27e36"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a49c84d6-bb82-4a13-9a8a-c08001518b42"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""25bcb516-96e2-4f17-9ed8-15f8e6424fda"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d79f8312-7739-4be5-8bf0-a85004e79f9d"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""54277ae4-ad74-43e8-a9e5-8815d9a045e2"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""69a437b8-3e54-47fe-ab84-87e8fedb094e"",
                     ""path"": ""<Keyboard>/rightMeta"",
@@ -261,7 +434,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""afd66edb-450b-457d-b313-3b762a92ed1e"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -272,7 +445,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""79327d93-e958-4280-a909-c621cdc5f374"",
-                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button6"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -289,6 +462,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         m_Digger = asset.FindActionMap("Digger", throwIfNotFound: true);
         m_Digger_Move = m_Digger.FindAction("Move", throwIfNotFound: true);
         m_Digger_Jump = m_Digger.FindAction("Jump", throwIfNotFound: true);
+        m_Digger_DigAction = m_Digger.FindAction("DigAction", throwIfNotFound: true);
         // Fighter
         m_Fighter = asset.FindActionMap("Fighter", throwIfNotFound: true);
         m_Fighter_Move = m_Fighter.FindAction("Move", throwIfNotFound: true);
@@ -344,12 +518,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     private IDiggerActions m_DiggerActionsCallbackInterface;
     private readonly InputAction m_Digger_Move;
     private readonly InputAction m_Digger_Jump;
+    private readonly InputAction m_Digger_DigAction;
     public struct DiggerActions
     {
         private @GameplayControls m_Wrapper;
         public DiggerActions(@GameplayControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Digger_Move;
         public InputAction @Jump => m_Wrapper.m_Digger_Jump;
+        public InputAction @DigAction => m_Wrapper.m_Digger_DigAction;
         public InputActionMap Get() { return m_Wrapper.m_Digger; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +541,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
+                @DigAction.started -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
+                @DigAction.performed -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
+                @DigAction.canceled -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
             }
             m_Wrapper.m_DiggerActionsCallbackInterface = instance;
             if (instance != null)
@@ -375,6 +554,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @DigAction.started += instance.OnDigAction;
+                @DigAction.performed += instance.OnDigAction;
+                @DigAction.canceled += instance.OnDigAction;
             }
         }
     }
@@ -424,6 +606,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDigAction(InputAction.CallbackContext context);
     }
     public interface IFighterActions
     {
