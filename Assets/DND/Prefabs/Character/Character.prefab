@@ -130,7 +130,7 @@ MonoBehaviour:
   movementSmoothing: 0.05
   groundLayers:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 55
   moveSpeed: 400
   groundCheck: {fileID: 285941139558627737}
 --- !u!58 &285941139565419145
