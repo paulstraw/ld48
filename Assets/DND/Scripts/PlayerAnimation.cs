@@ -13,12 +13,15 @@ public class PlayerAnimation : MonoBehaviour
 
   Rigidbody2D rb;
 
+  CharacterMovement movement;
+
   void Awake()
   {
     playerController = FindObjectOfType<PlayerController>();
     character = GetComponentInParent<Character>();
     rb = GetComponentInParent<Rigidbody2D>();
     playerAnimator = GetComponent<Animator>();
+    movement = GetComponentInParent<CharacterMovement>();
   }
 
   void Update()
@@ -45,10 +48,7 @@ public class PlayerAnimation : MonoBehaviour
 
   void UpdateJumpAnimation()
   {
-    float minJumpVelocity = 5f;
-    float maxFallVelocity = 0f;
-
-    playerAnimator.SetBool("IsJumping", rb.velocity.y > minJumpVelocity);
-    playerAnimator.SetBool("IsFalling", rb.velocity.y < maxFallVelocity);
+    playerAnimator.SetBool("IsJumping", rb.velocity.y > 0 && !movement.IsGrounded);
+    playerAnimator.SetBool("IsFalling", rb.velocity.y <= 0 && !movement.IsGrounded);
   }
 }

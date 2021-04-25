@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private set;
   } = true;
 
-  bool isGrounded = false;
+  public bool IsGrounded { get; private set; } = false;
   Rigidbody2D rb;
   Vector3 velocity = Vector3.zero;
   float jumpTimeCounter;
@@ -42,14 +42,14 @@ public class CharacterMovement : MonoBehaviour
 
   void FixedUpdate()
   {
-    isGrounded = false;
+    IsGrounded = false;
 
     Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayers);
     for (int i = 0; i < colliders.Length; i++)
     {
       if (colliders[i].gameObject != gameObject)
       {
-        isGrounded = true;
+        IsGrounded = true;
       }
     }
   }
@@ -69,14 +69,14 @@ public class CharacterMovement : MonoBehaviour
     if (wantsJump)
     {
       Vector3 newVelocity = rb.velocity;
-      if (isGrounded && !lastWantsJump)
+      if (IsGrounded && !lastWantsJump)
       {
         jumpExhausted = false;
-        isGrounded = false;
+        IsGrounded = false;
         jumpTimeCounter = jumpTimeLimit;
         newVelocity.y = jumpForce * Time.deltaTime;
       }
-      else if (!isGrounded)
+      else if (!IsGrounded)
       {
         if (jumpTimeCounter > 0 && !jumpExhausted)
         {
@@ -91,7 +91,7 @@ public class CharacterMovement : MonoBehaviour
 
       rb.velocity = newVelocity;
     }
-    else if (!isGrounded)
+    else if (!IsGrounded)
     {
       jumpExhausted = true;
     }
