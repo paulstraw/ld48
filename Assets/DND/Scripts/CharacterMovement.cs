@@ -87,6 +87,10 @@ public class CharacterMovement : MonoBehaviour
 
       rb.velocity = newVelocity;
     }
+    else if (!isGrounded)
+    {
+      jumpExhausted = true;
+    }
 
     lastWantsJump = wantsJump;
   }

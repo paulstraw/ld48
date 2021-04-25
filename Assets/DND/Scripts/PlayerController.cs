@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
   [SerializeField]
   CharacterMovement fighterMovement;
 
-  float diggerMove;
-  float fighterMove;
+  bool diggerMoving;
+  bool fighterMoving;
 
   bool diggerJump;
   bool fighterJump;
@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour
 
   void OnDiggerMoveStart(InputAction.CallbackContext ctx)
   {
-    diggerMove = ctx.ReadValue<Vector2>().x;
+    diggerMoving = true;
   }
 
   void OnDiggerMoveCancel(InputAction.CallbackContext ctx)
   {
-    diggerMove = 0;
+    diggerMoving = false;
   }
 
   void OnDiggerJumpStart(InputAction.CallbackContext _ctx)
@@ -91,12 +91,12 @@ public class PlayerController : MonoBehaviour
 
   void OnFighterMoveStart(InputAction.CallbackContext ctx)
   {
-    fighterMove = ctx.ReadValue<Vector2>().x;
+    fighterMoving = true;
   }
 
   void OnFighterMoveCancel(InputAction.CallbackContext ctx)
   {
-    fighterMove = 0;
+    fighterMoving = false;
   }
 
   void OnFighterJumpStart(InputAction.CallbackContext _ctx)
@@ -139,11 +139,13 @@ public class PlayerController : MonoBehaviour
   {
     if (controls.Digger.enabled)
     {
+      float diggerMove = controls.Digger.Move.ReadValue<Vector2>().x;
       diggerMovement.Move(diggerMove * Time.fixedDeltaTime, diggerJump);
     }
 
     if (controls.Fighter.enabled)
     {
+      float fighterMove = controls.Fighter.Move.ReadValue<Vector2>().x;
       fighterMovement.Move(fighterMove * Time.fixedDeltaTime, fighterJump);
     }
   }
