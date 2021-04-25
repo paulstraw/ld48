@@ -16,17 +16,17 @@ public class RespawnManager : MonoBehaviour
 
   void Awake()
   {
-    CharacterLifecycle.OnCharacterKilled += OnCharacterKilled;
+    Character.OnCharacterKilled += OnCharacterKilled;
   }
 
   void OnDestroy()
   {
-    CharacterLifecycle.OnCharacterKilled -= OnCharacterKilled;
+    Character.OnCharacterKilled -= OnCharacterKilled;
   }
 
-  void OnCharacterKilled(CharacterLifecycle lifecycle)
+  void OnCharacterKilled(Character character)
   {
-    this.Invoke(() => RespawnCharacter(lifecycle.CharacterType), respawnDelay);
+    this.Invoke(() => RespawnCharacter(character.CharacterType), respawnDelay);
   }
 
   private void RespawnCharacter(CharacterType characterType)

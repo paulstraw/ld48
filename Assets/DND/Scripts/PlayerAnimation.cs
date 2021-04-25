@@ -9,16 +9,19 @@ public class PlayerAnimation : MonoBehaviour
 
   PlayerController playerController;
 
-  CharacterLifecycle lifecycle;
+  Character character;
 
   Rigidbody2D rb;
+
+  CharacterMovement movement;
 
   void Awake()
   {
     playerController = FindObjectOfType<PlayerController>();
-    lifecycle = GetComponentInParent<CharacterLifecycle>();
+    character = GetComponentInParent<Character>();
     rb = GetComponentInParent<Rigidbody2D>();
     playerAnimator = GetComponent<Animator>();
+    movement = GetComponentInParent<CharacterMovement>();
   }
 
   void Update()
@@ -31,7 +34,7 @@ public class PlayerAnimation : MonoBehaviour
   {
     bool isMoving = false;
 
-    if (lifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
       isMoving = playerController.Controls.Digger.Move.ReadValue<Vector2>().x != 0;
     }
@@ -45,10 +48,7 @@ public class PlayerAnimation : MonoBehaviour
 
   void UpdateJumpAnimation()
   {
-    float minJumpVelocity = 5f;
-    float maxFallVelocity = 0f;
-
-    playerAnimator.SetBool("IsJumping", rb.velocity.y > minJumpVelocity);
-    playerAnimator.SetBool("IsFalling", rb.velocity.y < maxFallVelocity);
+    playerAnimator.SetBool("IsJumping", rb.velocity.y > 0 && !movement.IsGrounded);
+    playerAnimator.SetBool("IsFalling", rb.velocity.y <= 0 && !movement.IsGrounded);
   }
 }

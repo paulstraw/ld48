@@ -9,35 +9,35 @@ public class BrothersVCamTarget : MonoBehaviour
   {
     targetGroup = GetComponent<CinemachineTargetGroup>();
 
-    CharacterLifecycle.OnCharacterSpawned += OnCharacterSpawned;
-    CharacterLifecycle.OnCharacterKilled += OnCharacterKilled;
+    Character.OnCharacterSpawned += OnCharacterSpawned;
+    Character.OnCharacterKilled += OnCharacterKilled;
   }
 
   void OnDestroy()
   {
-    CharacterLifecycle.OnCharacterSpawned -= OnCharacterSpawned;
-    CharacterLifecycle.OnCharacterKilled -= OnCharacterKilled;
+    Character.OnCharacterSpawned -= OnCharacterSpawned;
+    Character.OnCharacterKilled -= OnCharacterKilled;
   }
 
-  void OnCharacterSpawned(CharacterLifecycle characterLifecycle)
+  void OnCharacterSpawned(Character character)
   {
-    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
-      targetGroup.m_Targets[0].target = characterLifecycle.transform;
+      targetGroup.m_Targets[0].target = character.transform;
     }
-    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    else if (character.CharacterType == CharacterType.Duel)
     {
-      targetGroup.m_Targets[1].target = characterLifecycle.transform;
+      targetGroup.m_Targets[1].target = character.transform;
     }
   }
 
-  void OnCharacterKilled(CharacterLifecycle characterLifecycle)
+  void OnCharacterKilled(Character character)
   {
-    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
       targetGroup.m_Targets[0].target = null;
     }
-    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    else if (character.CharacterType == CharacterType.Duel)
     {
       targetGroup.m_Targets[1].target = null;
     }
