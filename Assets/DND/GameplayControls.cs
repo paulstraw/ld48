@@ -33,6 +33,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DigAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a81f391-7c57-4088-964b-35214bceb939"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -132,6 +140,39 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0cc8c442-7fa1-4232-ba98-89c5334324bd"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb03f7b3-19a3-4799-b712-a7c21c5d8723"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5949c68f-1fb6-46d6-b296-83fb45ee99e8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DigAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -289,6 +330,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         m_Digger = asset.FindActionMap("Digger", throwIfNotFound: true);
         m_Digger_Move = m_Digger.FindAction("Move", throwIfNotFound: true);
         m_Digger_Jump = m_Digger.FindAction("Jump", throwIfNotFound: true);
+        m_Digger_DigAction = m_Digger.FindAction("DigAction", throwIfNotFound: true);
         // Fighter
         m_Fighter = asset.FindActionMap("Fighter", throwIfNotFound: true);
         m_Fighter_Move = m_Fighter.FindAction("Move", throwIfNotFound: true);
@@ -344,12 +386,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     private IDiggerActions m_DiggerActionsCallbackInterface;
     private readonly InputAction m_Digger_Move;
     private readonly InputAction m_Digger_Jump;
+    private readonly InputAction m_Digger_DigAction;
     public struct DiggerActions
     {
         private @GameplayControls m_Wrapper;
         public DiggerActions(@GameplayControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Digger_Move;
         public InputAction @Jump => m_Wrapper.m_Digger_Jump;
+        public InputAction @DigAction => m_Wrapper.m_Digger_DigAction;
         public InputActionMap Get() { return m_Wrapper.m_Digger; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +409,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_DiggerActionsCallbackInterface.OnJump;
+                @DigAction.started -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
+                @DigAction.performed -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
+                @DigAction.canceled -= m_Wrapper.m_DiggerActionsCallbackInterface.OnDigAction;
             }
             m_Wrapper.m_DiggerActionsCallbackInterface = instance;
             if (instance != null)
@@ -375,6 +422,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @DigAction.started += instance.OnDigAction;
+                @DigAction.performed += instance.OnDigAction;
+                @DigAction.canceled += instance.OnDigAction;
             }
         }
     }
@@ -424,6 +474,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDigAction(InputAction.CallbackContext context);
     }
     public interface IFighterActions
     {
