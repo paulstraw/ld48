@@ -20,15 +20,14 @@ public class Reticle : MonoBehaviour
 
   void Update()
   {
-    bool moving = lifecycle.CharacterType == CharacterType.Dig ? playerController.diggerMoving : playerController.fighterMoving;
-
+    bool moving = lifecycle.CharacterType == CharacterType.Dig ? playerController.DiggerMoving : playerController.FighterMoving;
 
     Vector2 move;
     if (moving)
     {
       move = lifecycle.CharacterType == CharacterType.Dig
-        ? playerController.controls.Digger.Move.ReadValue<Vector2>()
-        : playerController.controls.Fighter.Move.ReadValue<Vector2>();
+        ? playerController.Controls.Digger.Move.ReadValue<Vector2>()
+        : playerController.Controls.Fighter.Move.ReadValue<Vector2>();
 
       if (!movement.isFacingRight)
       {
