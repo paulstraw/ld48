@@ -7,7 +7,7 @@ public class Reticle : MonoBehaviour
 
   CharacterMovement movement;
 
-  CharacterLifecycle lifecycle;
+  Character character;
 
   PlayerController playerController;
 
@@ -15,17 +15,17 @@ public class Reticle : MonoBehaviour
   {
     playerController = FindObjectOfType<PlayerController>();
     movement = GetComponentInParent<CharacterMovement>();
-    lifecycle = GetComponentInParent<CharacterLifecycle>();
+    character = GetComponentInParent<Character>();
   }
 
   void Update()
   {
-    bool moving = lifecycle.CharacterType == CharacterType.Dig ? playerController.DiggerMoving : playerController.FighterMoving;
+    bool moving = character.CharacterType == CharacterType.Dig ? playerController.DiggerMoving : playerController.FighterMoving;
 
     Vector2 move;
     if (moving)
     {
-      move = lifecycle.CharacterType == CharacterType.Dig
+      move = character.CharacterType == CharacterType.Dig
         ? playerController.Controls.Digger.Move.ReadValue<Vector2>()
         : playerController.Controls.Fighter.Move.ReadValue<Vector2>();
 

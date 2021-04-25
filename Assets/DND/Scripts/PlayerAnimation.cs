@@ -9,14 +9,14 @@ public class PlayerAnimation : MonoBehaviour
 
   PlayerController playerController;
 
-  CharacterLifecycle lifecycle;
+  Character character;
 
   Rigidbody2D rb;
 
   void Awake()
   {
     playerController = FindObjectOfType<PlayerController>();
-    lifecycle = GetComponentInParent<CharacterLifecycle>();
+    character = GetComponentInParent<Character>();
     rb = GetComponentInParent<Rigidbody2D>();
     playerAnimator = GetComponent<Animator>();
   }
@@ -31,7 +31,7 @@ public class PlayerAnimation : MonoBehaviour
   {
     bool isMoving = false;
 
-    if (lifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
       isMoving = playerController.Controls.Digger.Move.ReadValue<Vector2>().x != 0;
     }

@@ -38,8 +38,8 @@ public class PlayerController : MonoBehaviour
     Controls.Fighter.Jump.started += OnFighterJumpStart;
     Controls.Fighter.Jump.canceled += OnFighterJumpCancel;
 
-    CharacterLifecycle.OnCharacterSpawned += OnCharacterSpawned;
-    CharacterLifecycle.OnCharacterKilled += OnCharacterKilled;
+    Character.OnCharacterSpawned += OnCharacterSpawned;
+    Character.OnCharacterKilled += OnCharacterKilled;
   }
 
   void Update()
@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
   void OnDestroy()
   {
-    CharacterLifecycle.OnCharacterSpawned -= OnCharacterSpawned;
-    CharacterLifecycle.OnCharacterKilled -= OnCharacterKilled;
+    Character.OnCharacterSpawned -= OnCharacterSpawned;
+    Character.OnCharacterKilled -= OnCharacterKilled;
   }
 
   void EnableDigControls()
@@ -113,27 +113,27 @@ public class PlayerController : MonoBehaviour
     fighterJump = false;
   }
 
-  void OnCharacterSpawned(CharacterLifecycle characterLifecycle)
+  void OnCharacterSpawned(Character character)
   {
-    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
       EnableDigControls();
-      diggerMovement = characterLifecycle.GetComponent<CharacterMovement>();
+      diggerMovement = character.GetComponent<CharacterMovement>();
     }
-    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    else if (character.CharacterType == CharacterType.Duel)
     {
       EnableDuelControls();
-      fighterMovement = characterLifecycle.GetComponent<CharacterMovement>();
+      fighterMovement = character.GetComponent<CharacterMovement>();
     }
   }
 
-  void OnCharacterKilled(CharacterLifecycle characterLifecycle)
+  void OnCharacterKilled(Character character)
   {
-    if (characterLifecycle.CharacterType == CharacterType.Dig)
+    if (character.CharacterType == CharacterType.Dig)
     {
       DisableDigControls();
     }
-    else if (characterLifecycle.CharacterType == CharacterType.Duel)
+    else if (character.CharacterType == CharacterType.Duel)
     {
       DisableDuelControls();
     }
