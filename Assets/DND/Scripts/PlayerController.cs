@@ -1,3 +1,4 @@
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,13 +75,23 @@ public class PlayerController : MonoBehaviour
   }
 
   void OnDiggerMoveStart(InputAction.CallbackContext ctx)
-  {
-    diggerMoving = true;
+  { <<
+    <<<<< HEAD
+    diggerMoving = true; ==
+    == == =
+    diggerMove = ctx.ReadValue<Vector2>().x;
+    digAnimator.SetBool("IsRunning", true); >>
+    >>>>> 7 ca2f0f(Add run animations to Dig)
   }
 
   void OnDiggerMoveCancel(InputAction.CallbackContext ctx)
-  {
-    diggerMoving = false;
+  { <<
+    <<<<< HEAD
+    diggerMoving = false; ==
+    == == =
+    diggerMove = 0;
+    digAnimator.SetBool("IsRunning", false); >>
+    >>>>> 7 ca2f0f(Add run animations to Dig)
   }
 
   void OnDiggerJumpStart(InputAction.CallbackContext _ctx)
