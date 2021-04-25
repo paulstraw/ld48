@@ -348,7 +348,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -2851,6 +2851,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diggerMovement: {fileID: 1070559190}
   fighterMovement: {fileID: 1142849390}
+  diggerMoving: 0
+  fighterMoving: 0
 --- !u!4 &1816391052
 Transform:
   m_ObjectHideFlags: 0

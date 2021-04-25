@@ -22,10 +22,14 @@ public class CharacterMovement : MonoBehaviour
   private Transform groundCheck;
 
   const float groundCheckRadius = 0.2f;
+  public bool isFacingRight
+  {
+    get;
+    private set;
+  } = true;
 
   bool isGrounded = false;
   Rigidbody2D rb;
-  bool facingRight = true;
   Vector3 velocity = Vector3.zero;
   float jumpTimeCounter;
   bool lastWantsJump = true;
@@ -57,7 +61,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 targetVelocity = new Vector2(move, rb.velocity.y);
     rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmoothing);
 
-    if (move > 0 && !facingRight || move < 0 && facingRight)
+    if (move > 0 && !isFacingRight || move < 0 && isFacingRight)
     {
       Flip();
     }
@@ -97,7 +101,7 @@ public class CharacterMovement : MonoBehaviour
 
   void Flip()
   {
-    facingRight = !facingRight;
+    isFacingRight = !isFacingRight;
 
     Vector3 newScale = transform.localScale;
     newScale.x *= -1;

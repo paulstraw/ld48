@@ -3,7 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-  GameplayControls controls;
+  public GameplayControls controls
+  {
+    get;
+    private set;
+  }
 
   [SerializeField]
   CharacterMovement diggerMovement;
@@ -11,8 +15,8 @@ public class PlayerController : MonoBehaviour
   [SerializeField]
   CharacterMovement fighterMovement;
 
-  bool diggerMoving;
-  bool fighterMoving;
+  public bool diggerMoving;
+  public bool fighterMoving;
 
   bool diggerJump;
   bool fighterJump;
