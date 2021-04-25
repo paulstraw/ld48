@@ -99,7 +99,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -170,8 +170,15 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.497152
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 285941140854668396, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: prefab
+      value:
+      objectReference: {fileID: 434075447456254622, guid: b229e49a9268d4b0aaee86bd9b968cd6, type: 3}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: CharacterType
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
 --- !u!4 &434075447456254618 stripped
 Transform:
