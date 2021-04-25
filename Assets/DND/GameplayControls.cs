@@ -223,7 +223,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Arrows"",
+                    ""name"": ""IJKL"",
                     ""id"": ""91581e15-79dc-4248-b321-5a36d618ae68"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -236,7 +236,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""168b3669-5078-4d10-aed0-acf4618f27ff"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -247,7 +247,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""7895199b-84e0-42ea-9728-e99a2940417f"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -258,7 +258,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""373571dd-8d52-4543-935a-44851c629e4e"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -269,7 +269,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""fc81de4e-6699-4404-a7c9-d3f51a3c71de"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -423,7 +423,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""69a437b8-3e54-47fe-ab84-87e8fedb094e"",
-                    ""path"": ""<Keyboard>/rightMeta"",
+                    ""path"": ""<Keyboard>/semicolon"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
