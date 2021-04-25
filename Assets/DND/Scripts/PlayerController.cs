@@ -1,9 +1,10 @@
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-  public GameplayControls controls
+  public GameplayControls Controls
   {
     get;
     private set;
@@ -15,28 +16,28 @@ public class PlayerController : MonoBehaviour
   [SerializeField]
   CharacterMovement fighterMovement;
 
-  public bool diggerMoving;
-  public bool fighterMoving;
+  public bool DiggerMoving;
+  public bool FighterMoving;
 
   bool diggerJump;
   bool fighterJump;
 
   void Awake()
   {
-    controls = new GameplayControls();
+    Controls = new GameplayControls();
 
     EnableDigControls();
     EnableDuelControls();
 
-    controls.Digger.Move.started += OnDiggerMoveStart;
-    controls.Digger.Move.canceled += OnDiggerMoveCancel;
-    controls.Digger.Jump.started += OnDiggerJumpStart;
-    controls.Digger.Jump.canceled += OnDiggerJumpCancel;
+    Controls.Digger.Move.started += OnDiggerMoveStart;
+    Controls.Digger.Move.canceled += OnDiggerMoveCancel;
+    Controls.Digger.Jump.started += OnDiggerJumpStart;
+    Controls.Digger.Jump.canceled += OnDiggerJumpCancel;
 
-    controls.Fighter.Move.started += OnFighterMoveStart;
-    controls.Fighter.Move.canceled += OnFighterMoveCancel;
-    controls.Fighter.Jump.started += OnFighterJumpStart;
-    controls.Fighter.Jump.canceled += OnFighterJumpCancel;
+    Controls.Fighter.Move.started += OnFighterMoveStart;
+    Controls.Fighter.Move.canceled += OnFighterMoveCancel;
+    Controls.Fighter.Jump.started += OnFighterJumpStart;
+    Controls.Fighter.Jump.canceled += OnFighterJumpCancel;
 
     CharacterLifecycle.OnCharacterSpawned += OnCharacterSpawned;
     CharacterLifecycle.OnCharacterKilled += OnCharacterKilled;
@@ -55,32 +56,32 @@ public class PlayerController : MonoBehaviour
 
   void EnableDigControls()
   {
-    controls.Digger.Enable();
+    Controls.Digger.Enable();
   }
 
   void EnableDuelControls()
   {
-    controls.Fighter.Enable();
+    Controls.Fighter.Enable();
   }
 
   void DisableDigControls()
   {
-    controls.Digger.Disable();
+    Controls.Digger.Disable();
   }
 
   void DisableDuelControls()
   {
-    controls.Fighter.Disable();
+    Controls.Fighter.Disable();
   }
 
   void OnDiggerMoveStart(InputAction.CallbackContext ctx)
   {
-    diggerMoving = true;
+    DiggerMoving = true;
   }
 
   void OnDiggerMoveCancel(InputAction.CallbackContext ctx)
   {
-    diggerMoving = false;
+    DiggerMoving = false;
   }
 
   void OnDiggerJumpStart(InputAction.CallbackContext _ctx)
@@ -95,12 +96,12 @@ public class PlayerController : MonoBehaviour
 
   void OnFighterMoveStart(InputAction.CallbackContext ctx)
   {
-    fighterMoving = true;
+    FighterMoving = true;
   }
 
   void OnFighterMoveCancel(InputAction.CallbackContext ctx)
   {
-    fighterMoving = false;
+    FighterMoving = false;
   }
 
   void OnFighterJumpStart(InputAction.CallbackContext _ctx)
@@ -141,15 +142,15 @@ public class PlayerController : MonoBehaviour
 
   void FixedUpdate()
   {
-    if (controls.Digger.enabled)
+    if (Controls.Digger.enabled)
     {
-      float diggerMove = controls.Digger.Move.ReadValue<Vector2>().x;
+      float diggerMove = Controls.Digger.Move.ReadValue<Vector2>().x;
       diggerMovement.Move(diggerMove * Time.fixedDeltaTime, diggerJump);
     }
 
-    if (controls.Fighter.enabled)
+    if (Controls.Fighter.enabled)
     {
-      float fighterMove = controls.Fighter.Move.ReadValue<Vector2>().x;
+      float fighterMove = Controls.Fighter.Move.ReadValue<Vector2>().x;
       fighterMovement.Move(fighterMove * Time.fixedDeltaTime, fighterJump);
     }
   }
