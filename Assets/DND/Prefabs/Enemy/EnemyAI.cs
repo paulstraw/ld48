@@ -32,13 +32,22 @@ public class EnemyAI : MonoBehaviour
 
   bool hasFlippedSinceLastDetectedFloor;
 
-  void Awake()
-  {
+  bool movementPaused = false;
 
+  public void PauseMovement()
+  {
+    movementPaused = true;
+  }
+
+  public void UnpauseMovement()
+  {
+    movementPaused = false;
   }
 
   void FixedUpdate()
   {
+    if (movementPaused) return;
+
     Collider2D[] frontFloorColliders = avoidsFloorGaps ? Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask) : new Collider2D[0];
     Collider2D[] bottomFloorColliders = Physics2D.OverlapCircleAll(bottomFloorCheck.position, 0.1f, pathMask);
     Collider2D[] wallColliders = Physics2D.OverlapCircleAll(wallCheck.position, 0.1f, pathMask);
