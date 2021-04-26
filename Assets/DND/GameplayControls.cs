@@ -453,7 +453,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""69a437b8-3e54-47fe-ab84-87e8fedb094e"",
-                    ""path"": ""<Keyboard>/semicolon"",
+                    ""path"": ""<Keyboard>/n"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
