@@ -28,7 +28,11 @@ public class EnemyAI : MonoBehaviour
   [SerializeField]
   bool avoidsFloorGaps = true;
 
-  bool isFacingRight;
+  public bool IsFacingRight
+  {
+    get;
+    private set;
+  }
 
   bool hasFlippedSinceLastDetectedFloor;
 
@@ -75,7 +79,7 @@ public class EnemyAI : MonoBehaviour
 
   void TurnAround()
   {
-    isFacingRight = !isFacingRight;
+    IsFacingRight = !IsFacingRight;
 
     Vector3 newScale = transform.localScale;
     newScale.x *= -1;
@@ -86,7 +90,7 @@ public class EnemyAI : MonoBehaviour
   {
     if (rb.velocity.magnitude >= maxVelocity) return;
 
-    float speed = isFacingRight ? -moveSpeed : moveSpeed;
+    float speed = IsFacingRight ? -moveSpeed : moveSpeed;
 
     rb.AddForce(Vector2.right * speed * Time.deltaTime);
   }

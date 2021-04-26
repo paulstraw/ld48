@@ -85,6 +85,19 @@ public class FireSnakeAttack : MonoBehaviour
     enemyAI.PauseMovement();
     this.Invoke(() => enemyAI.UnpauseMovement(), movementPauseLength);
 
-    Debug.Log("Totally will attack");
+
+    SpawnFireballs();
+  }
+
+  void SpawnFireballs()
+  {
+    for (int i = 0; i < fireballSpawnLocations.Length; i++)
+    {
+      Transform spawnLocation = fireballSpawnLocations[i];
+
+      GameObject fireballGo = Instantiate(fireballPrefab, spawnLocation.position, spawnLocation.rotation);
+
+      fireballGo.GetComponent<Fireball>().Flipped = !enemyAI.IsFacingRight;
+    }
   }
 }
