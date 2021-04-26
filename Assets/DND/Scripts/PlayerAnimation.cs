@@ -23,7 +23,7 @@ public class PlayerAnimation : MonoBehaviour
 
   SpriteRenderer spriteRenderer;
 
-  void Awake()
+  void Start()
   {
     playerController = FindObjectOfType<PlayerController>();
     rb = GetComponentInParent<Rigidbody2D>();
@@ -33,6 +33,11 @@ public class PlayerAnimation : MonoBehaviour
 
     character = GetComponentInParent<Character>();
     character.OnDamaged += HandleCharacterDamaged;
+
+    if (character.CharacterType == CharacterType.Dig)
+    {
+      playerController.Controls.Digger.DigAction.performed += HandleDigActionPerformed;
+    }
   }
 
   void OnDestroy()
@@ -66,6 +71,11 @@ public class PlayerAnimation : MonoBehaviour
   {
     playerAnimator.SetBool("IsJumping", rb.velocity.y > 0 && !movement.IsGrounded);
     playerAnimator.SetBool("IsFalling", rb.velocity.y <= 0 && !movement.IsGrounded);
+  }
+
+  void HandleDigActionPerformed(InputAction.CallbackContext ctx)
+  {
+    playerAnimator.SetTrigger("Dig");
   }
 
   void HandleCharacterDamaged(float damagedInvulnerabilityDuration)
