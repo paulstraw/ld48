@@ -8,7 +8,7 @@ public class Character : MonoBehaviour, IKillable, IDamageable
   public event System.Action<float> OnDamaged = delegate { };
 
   [SerializeField]
-  int maxHealth = 10;
+  public int baseMaxHealth = 10;
 
   [SerializeField]
   float damagedInvulnerabilityDuration = 2;
@@ -34,11 +34,18 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     private set;
   }
 
+  public int MaxHealth
+  {
+    get;
+    private set;
+  }
+
   void Awake()
   {
     rb = GetComponent<Rigidbody2D>();
 
-    CurrentHealth = maxHealth;
+    MaxHealth = baseMaxHealth;
+    CurrentHealth = MaxHealth;
     OnCharacterSpawned(this);
   }
 
