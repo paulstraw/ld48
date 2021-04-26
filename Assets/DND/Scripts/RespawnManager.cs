@@ -14,25 +14,51 @@ public class RespawnManager : MonoBehaviour
   [SerializeField]
   float respawnDelay = 3;
 
+  [SerializeField]
+  GameObject gameOverScreen;
+
   Transform currentSpawnPoint;
+
+  bool isDigDead = false;
+  bool isDuelDead = false;
 
   void Awake()
   {
     currentSpawnPoint = defaultSpawnPoint;
 
     Character.OnCharacterKilled += OnCharacterKilled;
+    Character.OnCharacterSpawned += OnCharacterSpawned;
     Checkpoint.OnCheckpointReached += OnCheckpointReached;
   }
 
   void OnDestroy()
   {
     Character.OnCharacterKilled -= OnCharacterKilled;
+    Character.OnCharacterSpawned -= OnCharacterSpawned;
     Checkpoint.OnCheckpointReached -= OnCheckpointReached;
   }
 
   void OnCharacterKilled(Character character)
   {
-    this.Invoke(() => RespawnCharacter(character.CharacterType), respawnDelay);
+    if (character.CharacterType == CharacterType.Dig) isDigDead = true;
+    if (character.CharacterType == CharacterType.Duel) isDuelDead = true;
+
+    if (isDigDead && isDuelDead)
+    {
+      CancelInvoke("RespawnDig");
+      CancelInvoke("RespawnDuel");
+      gameOverScreen.SetActive(true);
+    }
+    else
+    {
+      Invoke(character.CharacterType == CharacterType.Dig ? "RespawnDig" : "RespawnDuel", respawnDelay);
+    }
+  }
+
+  void OnCharacterSpawned(Character character)
+  {
+    if (character.CharacterType == CharacterType.Dig) isDigDead = false;
+    if (character.CharacterType == CharacterType.Duel) isDuelDead = false;
   }
 
   void OnCheckpointReached(Checkpoint checkpoint)
@@ -40,7 +66,17 @@ public class RespawnManager : MonoBehaviour
     currentSpawnPoint = checkpoint.transform;
   }
 
-  private void RespawnCharacter(CharacterType characterType)
+  void RespawnDig()
+  {
+    RespawnCharacter(CharacterType.Dig);
+  }
+
+  void RespawnDuel()
+  {
+    RespawnCharacter(CharacterType.Duel);
+  }
+
+  void RespawnCharacter(CharacterType characterType)
   {
     GameObject prefab = characterType == CharacterType.Dig
       ? digPrefab
