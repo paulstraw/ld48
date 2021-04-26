@@ -14,7 +14,7 @@ public class DamageOnContact : MonoBehaviour
   {
     IDamageable damageable = collision.gameObject.GetComponentInChildren<IDamageable>();
 
-    if (damageable != null)
+    if (damageable != null && mask.Contains(collision.gameObject.layer))
     {
       damageable.ReceiveDamage(damageAmount, gameObject);
     }

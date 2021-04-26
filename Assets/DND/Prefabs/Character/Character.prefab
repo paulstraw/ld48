@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMaxHealth: 10
   damagedInvulnerabilityDuration: 2
-  damagedKnockbackForce: 200
+  damagedKnockbackForce: 20
   CharacterType: 0
 --- !u!1 &2147892562271342641
 GameObject:
