@@ -59,17 +59,18 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     Destroy(gameObject);
   }
 
-  public void ReceiveDamage(int amount, GameObject source)
+  public void ReceiveDamage(int damageAmount, GameObject source)
   {
     if (isInvulnerable)
     {
+      KnockBack(damageAmount, source);
       return;
     }
 
     isInvulnerable = true;
     this.Invoke(() => isInvulnerable = false, damagedInvulnerabilityDuration);
 
-    CurrentHealth -= amount;
+    CurrentHealth -= damageAmount;
 
     if (CurrentHealth <= 0)
     {
@@ -78,12 +79,16 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     else
     {
       OnDamaged(damagedInvulnerabilityDuration);
-
-      float xKnockback = source.transform.position.x > transform.position.x
-        ? -damagedKnockbackForce
-        : damagedKnockbackForce;
-
-      rb.AddForce(new Vector2(xKnockback, damagedKnockbackForce));
+      KnockBack(damageAmount, source);
     }
+  }
+
+  void KnockBack(int damageAmount, GameObject source)
+  {
+    float xKnockback = source.transform.position.x > transform.position.x
+      ? -damagedKnockbackForce
+      : damagedKnockbackForce;
+
+    rb.AddForce(new Vector2(xKnockback, damagedKnockbackForce));
   }
 }
