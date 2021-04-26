@@ -21,6 +21,12 @@ public class CharacterMovement : MonoBehaviour
   [SerializeField]
   private Transform groundCheck;
 
+  [SerializeField]
+  float descendTerminalVelocity = 20;
+
+  [SerializeField]
+  float ascendTerminalVelocity = Mathf.Infinity;
+
   const float groundCheckRadius = 0.2f;
   public bool isFacingRight
   {
@@ -58,7 +64,7 @@ public class CharacterMovement : MonoBehaviour
   {
     move *= moveSpeed;
 
-    Vector3 targetVelocity = new Vector2(move, rb.velocity.y);
+    Vector3 targetVelocity = new Vector2(move, Mathf.Clamp(rb.velocity.y, -descendTerminalVelocity, ascendTerminalVelocity));
     rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmoothing);
 
     if (move > 0 && !isFacingRight || move < 0 && isFacingRight)
