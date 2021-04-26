@@ -47,6 +47,15 @@ public class PlayerAnimation : MonoBehaviour
   void OnDestroy()
   {
     character.OnDamaged -= HandleCharacterDamaged;
+
+    if (character.CharacterType == CharacterType.Dig)
+    {
+      playerController.Controls.Digger.DigAction.performed -= HandleDigActionPerformed;
+    }
+    else if (character.CharacterType == CharacterType.Duel)
+    {
+      playerController.Controls.Fighter.DuelAction.performed -= HandleDuelActionPerformed;
+    }
   }
 
   void Update()
