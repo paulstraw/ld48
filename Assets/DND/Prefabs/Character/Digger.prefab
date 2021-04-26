@@ -15,6 +15,7 @@ MonoBehaviour:
   diggableMask:
     serializedVersion: 2
     m_Bits: 128
+  destroyedTilePrefab: {fileID: 628182125386947264, guid: e70bc3b0d85e24137a762340cbd47a40, type: 3}
 --- !u!1 &2102254711898359344
 GameObject:
   m_ObjectHideFlags: 0

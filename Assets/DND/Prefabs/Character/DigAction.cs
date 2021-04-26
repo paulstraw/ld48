@@ -7,6 +7,9 @@ public class DigAction : MonoBehaviour
   [SerializeField]
   LayerMask diggableMask;
 
+  [SerializeField]
+  GameObject destroyedTilePrefab;
+
   GameplayControls controls;
   Reticle reticle;
 
@@ -34,7 +37,26 @@ public class DigAction : MonoBehaviour
       Tilemap tilemap = diggableCollider.gameObject.GetComponent<Tilemap>();
       Vector3Int cell = grid.WorldToCell(reticlePos);
 
+      SpawnDestroyedTile(tilemap, cell);
       tilemap.SetTile(cell, null);
     }
+  }
+
+  void SpawnDestroyedTile(Tilemap tilemap, Vector3Int cell)
+  {
+    Sprite sprite = tilemap.GetSprite(cell);
+    Color centerColor = sprite.texture.GetPixel(
+      (int)sprite.textureRect.center.x,
+      (int)sprite.textureRect.center.y
+    );
+
+    GameObject destroyedTile = Instantiate(
+      destroyedTilePrefab,
+      cell + new Vector3(0.5f, 0.5f, 0),
+      Quaternion.identity
+    );
+    ParticleSystem particles = destroyedTile.GetComponent<ParticleSystem>();
+
+    particles.GetComponent<Renderer>().material.color = centerColor;
   }
 }
