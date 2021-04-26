@@ -121,6 +121,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ea50c394-cb31-48fd-b504-f39c291a579d",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertX=false)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d4e174b3-2f79-48a3-b26d-366533dbb523",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -273,7 +284,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "PS4Stick",
                     "id": "62490fcc-a755-4e05-8417-81015abb7b00",
                     "path": "2DVector(mode=2)",
                     "interactions": "",
@@ -414,6 +425,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "621cdea7-fdc7-4967-ab03-6c0a511984dd",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
