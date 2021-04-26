@@ -8,6 +8,12 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
   [SerializeField]
   public int baseMaxHealth = 10;
 
+  [SerializeField]
+  GameObject deathAnimationPrefab;
+
+  [SerializeField]
+  Sprite deathSprite;
+
   public bool IsDead
   {
     get;
@@ -39,6 +45,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
   {
     if (IsDead) return;
     IsDead = true;
+
+    GameObject deathAnimation = Instantiate(deathAnimationPrefab, transform.position, Quaternion.identity);
+    deathAnimation.GetComponent<SpriteRenderer>().sprite = deathSprite;
 
     Destroy(gameObject);
   }

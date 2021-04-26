@@ -15,6 +15,7 @@ MonoBehaviour:
   diggableMask:
     serializedVersion: 2
     m_Bits: 128
+  destroyedTilePrefab: {fileID: 628182125386947264, guid: e70bc3b0d85e24137a762340cbd47a40, type: 3}
 --- !u!1 &2102254711898359344
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,8 +41,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102254711898359344}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7488246, w: 0.66276824}
-  m_LocalPosition: {x: 0.18, y: 0.51, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7028469, w: 0.71134114}
+  m_LocalPosition: {x: -0.028, y: 0.414, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 434075447456254618}
@@ -111,10 +112,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 66.61
-  m_PointLightOuterAngle: 93.83
+  m_PointLightInnerAngle: 107.7
+  m_PointLightOuterAngle: 134.92
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 11.087629
+  m_PointLightOuterRadius: 13.617432
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -318,10 +319,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.8941177
       objectReference: {fileID: 0}
+    - target: {fileID: 6420569928695817395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: m_Color.b
+      value: 0.23137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420569928695817395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: m_Color.g
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420569928695817395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
       propertyPath: prefab
       value: 
       objectReference: {fileID: 434075447456254622}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: deathSprite
+      value: 
+      objectReference: {fileID: 659797372610145418, guid: 03caafa2bb24a8e4f937d14c5a38e971, type: 3}
     - target: {fileID: 7954631862582028192, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
       propertyPath: m_RootOrder
       value: 3

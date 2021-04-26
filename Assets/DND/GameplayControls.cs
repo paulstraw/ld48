@@ -23,7 +23,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""fa492fff-747f-4893-9aaa-5b64dc4056b1"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""interactions"": """"
                 },
                 {
@@ -134,6 +134,17 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ea50c394-cb31-48fd-b504-f39c291a579d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertX=false)"",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d4e174b3-2f79-48a3-b26d-366533dbb523"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -209,7 +220,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""6fea2af5-255c-4cc0-a6f8-1fc0e7260368"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""interactions"": """"
                 },
                 {
@@ -286,7 +297,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""PS4Stick"",
                     ""id"": ""62490fcc-a755-4e05-8417-81015abb7b00"",
                     ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
@@ -427,6 +438,17 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""621cdea7-fdc7-4967-ab03-6c0a511984dd"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
