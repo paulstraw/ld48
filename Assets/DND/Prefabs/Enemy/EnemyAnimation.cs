@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyAnimation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  [SerializeField]
+  Animator enemyAnimator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  EnemyAI enemy;
+
+  void Awake()
+  { }
+
+  void Update()
+  { }
 }
