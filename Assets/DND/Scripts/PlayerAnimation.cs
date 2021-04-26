@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerAnimation : MonoBehaviour
 {
+  [SerializeField]
+  Material defaultMaterial;
+
+  [SerializeField]
+  Material damagedMaterial;
+
   Animator playerAnimator;
 
   PlayerController playerController;
@@ -15,13 +21,23 @@ public class PlayerAnimation : MonoBehaviour
 
   CharacterMovement movement;
 
+  SpriteRenderer spriteRenderer;
+
   void Awake()
   {
     playerController = FindObjectOfType<PlayerController>();
-    character = GetComponentInParent<Character>();
     rb = GetComponentInParent<Rigidbody2D>();
     playerAnimator = GetComponent<Animator>();
     movement = GetComponentInParent<CharacterMovement>();
+    spriteRenderer = GetComponentInParent<SpriteRenderer>();
+
+    character = GetComponentInParent<Character>();
+    character.OnDamaged += HandleCharacterDamaged;
+  }
+
+  void OnDestroy()
+  {
+    character.OnDamaged -= HandleCharacterDamaged;
   }
 
   void Update()
@@ -50,5 +66,23 @@ public class PlayerAnimation : MonoBehaviour
   {
     playerAnimator.SetBool("IsJumping", rb.velocity.y > 0 && !movement.IsGrounded);
     playerAnimator.SetBool("IsFalling", rb.velocity.y <= 0 && !movement.IsGrounded);
+  }
+
+  void HandleCharacterDamaged(float damagedInvulnerabilityDuration)
+  {
+    SetDamagedMaterial();
+
+    CancelInvoke("SetDefaultMaterial");
+    Invoke("SetDefaultMaterial", damagedInvulnerabilityDuration);
+  }
+
+  void SetDamagedMaterial()
+  {
+    spriteRenderer.material = damagedMaterial;
+  }
+
+  void SetDefaultMaterial()
+  {
+    spriteRenderer.material = defaultMaterial;
   }
 }
