@@ -38,6 +38,10 @@ public class PlayerAnimation : MonoBehaviour
     {
       playerController.Controls.Digger.DigAction.performed += HandleDigActionPerformed;
     }
+    else if (character.CharacterType == CharacterType.Duel)
+    {
+      playerController.Controls.Fighter.DuelAction.performed += HandleDuelActionPerformed;
+    }
   }
 
   void OnDestroy()
@@ -76,6 +80,11 @@ public class PlayerAnimation : MonoBehaviour
   void HandleDigActionPerformed(InputAction.CallbackContext ctx)
   {
     playerAnimator.SetTrigger("Dig");
+  }
+
+  void HandleDuelActionPerformed(InputAction.CallbackContext ctx)
+  {
+    playerAnimator.SetTrigger("Duel");
   }
 
   void HandleCharacterDamaged(float damagedInvulnerabilityDuration)
