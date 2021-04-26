@@ -16,6 +16,12 @@ public class Character : MonoBehaviour, IKillable, IDamageable
   [SerializeField]
   float damagedKnockbackForce = 50;
 
+  [SerializeField]
+  GameObject deathAnimationPrefab;
+
+  [SerializeField]
+  Sprite deathSprite;
+
   public CharacterType CharacterType;
 
   bool isInvulnerable = false;
@@ -55,6 +61,9 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     IsDead = true;
 
     OnCharacterKilled(this);
+
+    GameObject deathAnimation = Instantiate(deathAnimationPrefab, transform.position, Quaternion.identity);
+    deathAnimation.GetComponent<SpriteRenderer>().sprite = deathSprite;
 
     Destroy(gameObject);
   }

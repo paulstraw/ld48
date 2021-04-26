@@ -166,6 +166,8 @@ MonoBehaviour:
   baseMaxHealth: 10
   damagedInvulnerabilityDuration: 2
   damagedKnockbackForce: 20
+  deathAnimationPrefab: {fileID: 8818457379460358428, guid: a5c70969f3e534a98ab65c1116ce1974, type: 3}
+  deathSprite: {fileID: 0}
   CharacterType: 0
 --- !u!1 &2147892562271342641
 GameObject:

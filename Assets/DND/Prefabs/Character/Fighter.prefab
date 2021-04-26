@@ -210,9 +210,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 434075447456254622}
     - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: deathSprite
+      value: 
+      objectReference: {fileID: 6833624519701456044, guid: 03caafa2bb24a8e4f937d14c5a38e971, type: 3}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
       propertyPath: CharacterType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6858218034068428395, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
+      propertyPath: deathAnimationPrefab
+      value: 
+      objectReference: {fileID: 8818457379460358428, guid: a5c70969f3e534a98ab65c1116ce1974, type: 3}
     - target: {fileID: 7276449138153062760, guid: e9e344d37d2f6467a9b01241c02e9ded, type: 3}
       propertyPath: m_Sprite
       value: 
