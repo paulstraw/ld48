@@ -219,6 +219,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DuelAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""23599016-7dfc-4e21-a063-9d650442747b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -452,6 +460,39 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cb55167-f735-4de6-b999-e8188142b9da"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DuelAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0a2e264-b7c5-48df-aacd-2ebc39b1febc"",
+                    ""path"": ""<HID::Unknown DUALSHOCK 4 Wireless Controller>/button6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DuelAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""beb3a71b-b0a7-4691-aa2a-afa69c8b1f89"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DuelAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -467,6 +508,7 @@ public class @GameplayControls : IInputActionCollection, IDisposable
         m_Fighter = asset.FindActionMap("Fighter", throwIfNotFound: true);
         m_Fighter_Move = m_Fighter.FindAction("Move", throwIfNotFound: true);
         m_Fighter_Jump = m_Fighter.FindAction("Jump", throwIfNotFound: true);
+        m_Fighter_DuelAction = m_Fighter.FindAction("DuelAction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -567,12 +609,14 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     private IFighterActions m_FighterActionsCallbackInterface;
     private readonly InputAction m_Fighter_Move;
     private readonly InputAction m_Fighter_Jump;
+    private readonly InputAction m_Fighter_DuelAction;
     public struct FighterActions
     {
         private @GameplayControls m_Wrapper;
         public FighterActions(@GameplayControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Fighter_Move;
         public InputAction @Jump => m_Wrapper.m_Fighter_Jump;
+        public InputAction @DuelAction => m_Wrapper.m_Fighter_DuelAction;
         public InputActionMap Get() { return m_Wrapper.m_Fighter; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -588,6 +632,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnJump;
+                @DuelAction.started -= m_Wrapper.m_FighterActionsCallbackInterface.OnDuelAction;
+                @DuelAction.performed -= m_Wrapper.m_FighterActionsCallbackInterface.OnDuelAction;
+                @DuelAction.canceled -= m_Wrapper.m_FighterActionsCallbackInterface.OnDuelAction;
             }
             m_Wrapper.m_FighterActionsCallbackInterface = instance;
             if (instance != null)
@@ -598,6 +645,9 @@ public class @GameplayControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @DuelAction.started += instance.OnDuelAction;
+                @DuelAction.performed += instance.OnDuelAction;
+                @DuelAction.canceled += instance.OnDuelAction;
             }
         }
     }
@@ -612,5 +662,6 @@ public class @GameplayControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDuelAction(InputAction.CallbackContext context);
     }
 }

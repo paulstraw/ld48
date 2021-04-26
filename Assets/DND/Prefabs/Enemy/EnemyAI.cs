@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
   [SerializeField]
-  Transform floorCheck;
+  Transform frontFloorCheck;
+
+  [SerializeField]
+  Transform bottomFloorCheck;
 
   [SerializeField]
   Transform wallCheck;
@@ -15,6 +18,9 @@ public class EnemyAI : MonoBehaviour
 
   [SerializeField]
   float moveSpeed;
+
+  [SerializeField]
+  float maxVelocity;
 
   [SerializeField]
   Rigidbody2D rb;
@@ -30,13 +36,16 @@ public class EnemyAI : MonoBehaviour
 
   void FixedUpdate()
   {
-    Collider2D[] floorColliders = Physics2D.OverlapCircleAll(floorCheck.position, 0.1f, pathMask);
+    Collider2D[] frontFloorColliders = Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask);
+    Collider2D[] bottomFloorColliders = Physics2D.OverlapCircleAll(bottomFloorCheck.position, 0.1f, pathMask);
     Collider2D[] wallColliders = Physics2D.OverlapCircleAll(wallCheck.position, 0.1f, pathMask);
 
-    bool detectedFloor = floorColliders.Length != 0;
-    bool canContinueForward = detectedFloor && wallColliders.Length == 0;
+    bool detectedFrontFloor = frontFloorColliders.Length != 0;
+    bool detectedBottomFloor = bottomFloorColliders.Length != 0;
+    bool detectedWall = wallColliders.Length != 0;
+    bool canContinueForward = detectedFrontFloor && !detectedWall;
 
-    if (detectedFloor)
+    if (detectedFrontFloor)
     {
       hasFlippedSinceLastDetectedFloor = false;
     }
@@ -45,7 +54,7 @@ public class EnemyAI : MonoBehaviour
     {
       MoveForward();
     }
-    else if (!hasFlippedSinceLastDetectedFloor)
+    else if (!hasFlippedSinceLastDetectedFloor && detectedBottomFloor)
     {
       TurnAround();
       hasFlippedSinceLastDetectedFloor = true;
@@ -63,8 +72,10 @@ public class EnemyAI : MonoBehaviour
 
   void MoveForward()
   {
-    Vector2 newVelocity = rb.velocity;
-    newVelocity.x = isFacingRight ? -moveSpeed : moveSpeed;
-    rb.velocity = newVelocity;
+    if (rb.velocity.magnitude >= maxVelocity) return;
+
+    float speed = isFacingRight ? -moveSpeed : moveSpeed;
+
+    rb.AddForce(Vector2.right * speed * Time.deltaTime);
   }
 }

@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 116471666859033325}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116471666859033324
 GameObject:
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 116471666859033320}
   - component: {fileID: 116471666859033321}
   - component: {fileID: 116471666859033322}
+  - component: {fileID: 4311715407717465229}
   m_Layer: 8
   m_Name: Snake
   m_TagString: Untagged
@@ -63,6 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 116471667853715905}
+  - {fileID: 2150148303282939740}
   - {fileID: 116471666803617015}
   - {fileID: 116471666963090392}
   m_Father: {fileID: 0}
@@ -109,8 +111,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 8
+  m_Material: {fileID: 6200000, guid: 5b7551c39021147ecaf31b15e7ed8e4b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -127,12 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24723f8a47fd3874cb7e5008a69d2fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorCheck: {fileID: 116471667853715905}
+  frontFloorCheck: {fileID: 116471667853715905}
+  bottomFloorCheck: {fileID: 2150148303282939740}
   wallCheck: {fileID: 116471666803617015}
   pathMask:
     serializedVersion: 2
     m_Bits: 183
-  moveSpeed: 3
+  moveSpeed: 8000
+  maxVelocity: 2
   rb: {fileID: 116471666859033326}
 --- !u!58 &116471666859033321
 CircleCollider2D:
@@ -143,7 +147,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 116471666859033324}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5b7551c39021147ecaf31b15e7ed8e4b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -166,6 +170,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damageAmount: 4
+--- !u!114 &4311715407717465229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116471666859033324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa87ca9a40b5e423f99ebc79cb4e2955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagedKnockbackForce: 10
+  baseMaxHealth: 8
 --- !u!1 &116471666963090399
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 116471666859033325}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &116471666963090394
 Animator:
@@ -230,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2e4136ea37b9f419d46a7ee4d8ffa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAnimator: {fileID: 0}
 --- !u!212 &116471666963090395
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -292,7 +311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 116471667853715905}
   m_Layer: 8
-  m_Name: FloorCheck
+  m_Name: FrontFloorCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,4 +330,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 116471666859033325}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2939058134446639333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2150148303282939740}
+  m_Layer: 8
+  m_Name: BottomFloorCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2150148303282939740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2939058134446639333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.114, y: -0.506, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 116471666859033325}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

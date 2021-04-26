@@ -1,26 +1,12 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour, IKillable, IDamageable
+public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 {
-  public static event System.Action<Character> OnCharacterSpawned = delegate { };
-  public static event System.Action<Character> OnCharacterKilled = delegate { };
-
-  public event System.Action<float> OnDamaged = delegate { };
-
-  [SerializeField]
-  public int baseMaxHealth = 10;
-
-  [SerializeField]
-  float damagedInvulnerabilityDuration = 2;
-
   [SerializeField]
   float damagedKnockbackForce = 50;
 
-  public CharacterType CharacterType;
-
-  bool isInvulnerable = false;
-
-  Rigidbody2D rb;
+  [SerializeField]
+  public int baseMaxHealth = 10;
 
   public bool IsDead
   {
@@ -40,13 +26,13 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     private set;
   }
 
+  Rigidbody2D rb;
+
   void Awake()
   {
     rb = GetComponent<Rigidbody2D>();
-
     MaxHealth = baseMaxHealth;
     CurrentHealth = MaxHealth;
-    OnCharacterSpawned(this);
   }
 
   public void Kill()
@@ -54,21 +40,11 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     if (IsDead) return;
     IsDead = true;
 
-    OnCharacterKilled(this);
-
     Destroy(gameObject);
   }
 
   public void ReceiveDamage(int damageAmount, GameObject source)
   {
-    if (isInvulnerable)
-    {
-      return;
-    }
-
-    isInvulnerable = true;
-    this.Invoke(() => isInvulnerable = false, damagedInvulnerabilityDuration);
-
     CurrentHealth -= damageAmount;
 
     if (CurrentHealth <= 0)
@@ -77,7 +53,6 @@ public class Character : MonoBehaviour, IKillable, IDamageable
     }
     else
     {
-      OnDamaged(damagedInvulnerabilityDuration);
       KnockBack(damageAmount, source);
     }
   }
