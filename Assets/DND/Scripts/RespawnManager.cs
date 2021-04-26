@@ -14,14 +14,20 @@ public class RespawnManager : MonoBehaviour
   [SerializeField]
   float respawnDelay = 3;
 
+  Transform currentSpawnPoint;
+
   void Awake()
   {
+    currentSpawnPoint = defaultSpawnPoint;
+
     Character.OnCharacterKilled += OnCharacterKilled;
+    Checkpoint.OnCheckpointReached += OnCheckpointReached;
   }
 
   void OnDestroy()
   {
     Character.OnCharacterKilled -= OnCharacterKilled;
+    Checkpoint.OnCheckpointReached -= OnCheckpointReached;
   }
 
   void OnCharacterKilled(Character character)
@@ -29,19 +35,17 @@ public class RespawnManager : MonoBehaviour
     this.Invoke(() => RespawnCharacter(character.CharacterType), respawnDelay);
   }
 
+  void OnCheckpointReached(Checkpoint checkpoint)
+  {
+    currentSpawnPoint = checkpoint.transform;
+  }
+
   private void RespawnCharacter(CharacterType characterType)
   {
-    Transform spawnPoint = GetSpawnPoint(characterType);
-
     GameObject prefab = characterType == CharacterType.Dig
       ? digPrefab
       : duelPrefab;
 
-    Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
-  }
-
-  private Transform GetSpawnPoint(CharacterType characterType)
-  {
-    return defaultSpawnPoint;
+    Instantiate(prefab, currentSpawnPoint.position, currentSpawnPoint.rotation);
   }
 }
