@@ -25,6 +25,9 @@ public class EnemyAI : MonoBehaviour
   [SerializeField]
   Rigidbody2D rb;
 
+  [SerializeField]
+  bool avoidsFloorGaps = true;
+
   bool isFacingRight;
 
   bool hasFlippedSinceLastDetectedFloor;
@@ -36,11 +39,11 @@ public class EnemyAI : MonoBehaviour
 
   void FixedUpdate()
   {
-    Collider2D[] frontFloorColliders = Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask);
+    Collider2D[] frontFloorColliders = avoidsFloorGaps ? Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask) : new Collider2D[0];
     Collider2D[] bottomFloorColliders = Physics2D.OverlapCircleAll(bottomFloorCheck.position, 0.1f, pathMask);
     Collider2D[] wallColliders = Physics2D.OverlapCircleAll(wallCheck.position, 0.1f, pathMask);
 
-    bool detectedFrontFloor = frontFloorColliders.Length != 0;
+    bool detectedFrontFloor = avoidsFloorGaps ? frontFloorColliders.Length != 0 : true;
     bool detectedBottomFloor = bottomFloorColliders.Length != 0;
     bool detectedWall = wallColliders.Length != 0;
     bool canContinueForward = detectedFrontFloor && !detectedWall;
