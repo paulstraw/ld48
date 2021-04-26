@@ -135,6 +135,8 @@ MonoBehaviour:
     m_Bits: 183
   moveSpeed: 400
   groundCheck: {fileID: 285941139558627737}
+  descendTerminalVelocity: 20
+  ascendTerminalVelocity: Infinity
 --- !u!58 &285941139565419145
 CircleCollider2D:
   m_ObjectHideFlags: 0
