@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83702fc5c3d0945d7918d5d591897ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  baseMaxHealth: 10
   damagedInvulnerabilityDuration: 2
   damagedKnockbackForce: 800
   CharacterType: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb6d48ff0c99429dbe1941563d15667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceMultiplier: 1
+  distanceMultiplier: 0.8
 --- !u!212 &9175741435347079320
 SpriteRenderer:
   m_ObjectHideFlags: 0
