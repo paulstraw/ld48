@@ -25,22 +25,38 @@ public class EnemyAI : MonoBehaviour
   [SerializeField]
   Rigidbody2D rb;
 
-  bool isFacingRight;
+  [SerializeField]
+  bool avoidsFloorGaps = true;
+
+  public bool IsFacingRight
+  {
+    get;
+    private set;
+  }
 
   bool hasFlippedSinceLastDetectedFloor;
 
-  void Awake()
-  {
+  bool movementPaused = false;
 
+  public void PauseMovement()
+  {
+    movementPaused = true;
+  }
+
+  public void UnpauseMovement()
+  {
+    movementPaused = false;
   }
 
   void FixedUpdate()
   {
-    Collider2D[] frontFloorColliders = Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask);
+    if (movementPaused) return;
+
+    Collider2D[] frontFloorColliders = avoidsFloorGaps ? Physics2D.OverlapCircleAll(frontFloorCheck.position, 0.1f, pathMask) : new Collider2D[0];
     Collider2D[] bottomFloorColliders = Physics2D.OverlapCircleAll(bottomFloorCheck.position, 0.1f, pathMask);
     Collider2D[] wallColliders = Physics2D.OverlapCircleAll(wallCheck.position, 0.1f, pathMask);
 
-    bool detectedFrontFloor = frontFloorColliders.Length != 0;
+    bool detectedFrontFloor = avoidsFloorGaps ? frontFloorColliders.Length != 0 : true;
     bool detectedBottomFloor = bottomFloorColliders.Length != 0;
     bool detectedWall = wallColliders.Length != 0;
     bool canContinueForward = detectedFrontFloor && !detectedWall;
@@ -63,7 +79,7 @@ public class EnemyAI : MonoBehaviour
 
   void TurnAround()
   {
-    isFacingRight = !isFacingRight;
+    IsFacingRight = !IsFacingRight;
 
     Vector3 newScale = transform.localScale;
     newScale.x *= -1;
@@ -74,7 +90,7 @@ public class EnemyAI : MonoBehaviour
   {
     if (rb.velocity.magnitude >= maxVelocity) return;
 
-    float speed = isFacingRight ? -moveSpeed : moveSpeed;
+    float speed = IsFacingRight ? -moveSpeed : moveSpeed;
 
     rb.AddForce(Vector2.right * speed * Time.deltaTime);
   }

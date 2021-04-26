@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
   LayerMask characterMask;
 
   [SerializeField]
-  Light2D light;
+  Light2D areaLight;
 
   [SerializeField]
   float capturedLightRadius;
@@ -31,7 +31,7 @@ public class Checkpoint : MonoBehaviour
     {
       isCaptured = true;
       animator.SetBool("IsCaptured", true);
-      light.pointLightOuterRadius = capturedLightRadius;
+      areaLight.pointLightOuterRadius = capturedLightRadius;
 
       OnCheckpointReached(this);
     }
