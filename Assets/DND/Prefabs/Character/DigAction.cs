@@ -45,6 +45,8 @@ public class DigAction : MonoBehaviour
   void SpawnDestroyedTile(Tilemap tilemap, Vector3Int cell)
   {
     Sprite sprite = tilemap.GetSprite(cell);
+    if (sprite == null || sprite.texture == null) return;
+
     Color centerColor = sprite.texture.GetPixel(
       (int)sprite.textureRect.center.x,
       (int)sprite.textureRect.center.y

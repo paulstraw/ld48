@@ -187,6 +187,7 @@ MonoBehaviour:
   baseMaxHealth: 8
   deathAnimationPrefab: {fileID: 8818457379460358428, guid: a5c70969f3e534a98ab65c1116ce1974, type: 3}
   deathSprite: {fileID: 6497019688765925324, guid: 03caafa2bb24a8e4f937d14c5a38e971, type: 3}
+  pointsForKill: 75
 --- !u!1 &116471666963090399
 GameObject:
   m_ObjectHideFlags: 0

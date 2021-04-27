@@ -128,13 +128,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 600
-  jumpTimeLimit: 0.2
+  jumpTimeLimit: 0.36
   movementSmoothing: 0.05
   groundLayers:
     serializedVersion: 2
     m_Bits: 183
   moveSpeed: 400
   groundCheck: {fileID: 285941139558627737}
+  descendTerminalVelocity: 20
+  ascendTerminalVelocity: Infinity
 --- !u!58 &285941139565419145
 CircleCollider2D:
   m_ObjectHideFlags: 0

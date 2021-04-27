@@ -12,6 +12,12 @@ public class Checkpoint : MonoBehaviour
   [SerializeField]
   float capturedLightRadius;
 
+  [SerializeField]
+  bool isFinalCheckpoint;
+
+  [SerializeField]
+  GameObject WinScreen;
+
   public static event System.Action<Checkpoint> OnCheckpointReached = delegate { };
 
   Animator animator;
@@ -32,6 +38,11 @@ public class Checkpoint : MonoBehaviour
       isCaptured = true;
       animator.SetBool("IsCaptured", true);
       areaLight.pointLightOuterRadius = capturedLightRadius;
+
+      if (isFinalCheckpoint)
+      {
+        WinScreen.SetActive(true);
+      }
 
       OnCheckpointReached(this);
     }

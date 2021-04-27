@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 {
+  public static event System.Action<int> OnEnemyKilled = delegate { };
+
   [SerializeField]
   float damagedKnockbackForce = 50;
 
@@ -13,6 +15,9 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
 
   [SerializeField]
   Sprite deathSprite;
+
+  [SerializeField]
+  int pointsForKill;
 
   public bool IsDead
   {
@@ -45,6 +50,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable, IKillable
   {
     if (IsDead) return;
     IsDead = true;
+
+    OnEnemyKilled(pointsForKill);
 
     GameObject deathAnimation = Instantiate(deathAnimationPrefab, transform.position, Quaternion.identity);
     deathAnimation.GetComponent<SpriteRenderer>().sprite = deathSprite;

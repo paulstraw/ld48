@@ -39,6 +39,6 @@ public class Reticle : MonoBehaviour
       move = new Vector2(1, 0);
     }
 
-    transform.localPosition = Vector3.MoveTowards(transform.localPosition, move * distanceMultiplier, 0.1f);
+    transform.localPosition = Vector3.MoveTowards(transform.localPosition, move * distanceMultiplier, 0.4f);
   }
 }
