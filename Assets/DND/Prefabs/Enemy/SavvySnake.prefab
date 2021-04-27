@@ -83,5 +83,9 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4311715407717465229, guid: d006982bd2c4949128fd148968ad9de1, type: 3}
+      propertyPath: pointsForKill
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d006982bd2c4949128fd148968ad9de1, type: 3}

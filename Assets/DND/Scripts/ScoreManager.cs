@@ -18,11 +18,17 @@ public class ScoreManager : MonoBehaviour
   {
     Gem.OnGemCollected += OnGemCollected;
     Character.OnCharacterKilled += OnCharacterKilled;
+    EnemyHealth.OnEnemyKilled += OnEnemyKilled;
   }
 
   void OnGemCollected(CharacterType characterType)
   {
     Score += gemScoreIncrease;
+  }
+
+  void OnEnemyKilled(int pointsForKill)
+  {
+    Score += pointsForKill;
   }
 
   void OnCharacterKilled(Character character)

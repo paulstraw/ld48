@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 600
-  jumpTimeLimit: 0.2
+  jumpTimeLimit: 0.36
   movementSmoothing: 0.05
   groundLayers:
     serializedVersion: 2
