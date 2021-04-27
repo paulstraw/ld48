@@ -84,6 +84,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4311715407717465229, guid: d006982bd2c4949128fd148968ad9de1, type: 3}
+      propertyPath: deathSprite
+      value: 
+      objectReference: {fileID: -6298986058642862026, guid: 03caafa2bb24a8e4f937d14c5a38e971, type: 3}
+    - target: {fileID: 4311715407717465229, guid: d006982bd2c4949128fd148968ad9de1, type: 3}
       propertyPath: pointsForKill
       value: 75
       objectReference: {fileID: 0}
