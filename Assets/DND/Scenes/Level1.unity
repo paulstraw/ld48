@@ -9803,7 +9803,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 320
-  damageAmount: 4
+  damageAmount: 100
 --- !u!4 &1689287069263680664
 Transform:
   m_ObjectHideFlags: 0
