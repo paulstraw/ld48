@@ -102,7 +102,7 @@ MonoBehaviour:
   characterMask:
     serializedVersion: 2
     m_Bits: 64
-  light: {fileID: 8133804009843767904}
+  areaLight: {fileID: 8133804009843767904}
   capturedLightRadius: 8
 --- !u!61 &8133804008825120543
 BoxCollider2D:
