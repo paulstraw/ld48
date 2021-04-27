@@ -8955,6 +8955,10 @@ PrefabInstance:
       propertyPath: m_YDamping
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6606525854320693702, guid: 56021ca49eaa54bd99f6c87c219ec8dc, type: 3}
+      propertyPath: m_MaximumFOV
+      value: 179
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56021ca49eaa54bd99f6c87c219ec8dc, type: 3}
 --- !u!1 &2136189279
